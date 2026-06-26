@@ -1,0 +1,15 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+data/*
+!data/.gitkeep
+google_client_secret.json
+google_token.json
+strava_token.json
+otf_token.json
+*.sqlite3
+*.db

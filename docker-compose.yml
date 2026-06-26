@@ -1,0 +1,19 @@
+services:
+  otf-connector:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  health:
+    build: .
+    env_file:
+      - .env
+    command: uvicorn health:app --host 0.0.0.0 --port 8000
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
