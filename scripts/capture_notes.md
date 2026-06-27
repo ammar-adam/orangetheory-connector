@@ -4,18 +4,19 @@ Use this file while capturing traffic. Move sanitized findings into `api-spec.md
 
 ## Windows + iPhone mitmproxy Checklist
 
-1. Install mitmproxy.
-2. Run `mitmweb --listen-port 8080`.
-3. Find the Windows local IP address.
-4. On iPhone, configure the WiFi HTTP proxy to the Windows IP and port `8080`.
-5. Open `http://mitm.it` on the iPhone and install the mitmproxy certificate.
-6. Trust the certificate under Settings > General > About > Certificate Trust Settings.
-7. Open the Orangetheory app and capture:
+1. Install dev dependencies with `pip install -r requirements-dev.txt`.
+2. Run `python scripts/start_capture.py`.
+3. On iPhone, configure the WiFi HTTP proxy to the printed Windows IP and port `8080`.
+4. Open `http://mitm.it` on the iPhone and install the mitmproxy certificate.
+5. Trust the certificate under Settings > General > About > Certificate Trust Settings.
+6. Open the Orangetheory app and capture:
    - login
    - upcoming schedule
    - class detail
    - completed workout summary
    - profile/stats page
+7. Stop capture and run `python scripts/extract_otf_flows.py ./data/otf-capture.mitm`.
+8. Review `api-spec.captured.md` and move confirmed details into `api-spec.md`.
 
 ## Endpoints
 

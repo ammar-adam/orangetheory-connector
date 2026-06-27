@@ -4,6 +4,16 @@ Status: pending capture.
 
 This project depends on reverse engineering the Orangetheory Fitness API from the official app or web portal. Fill this document with sanitized request and response examples before enabling real sync.
 
+## Semi-Automated Capture
+
+```bash
+pip install -r requirements-dev.txt
+python scripts/start_capture.py
+python scripts/extract_otf_flows.py ./data/otf-capture.mitm
+```
+
+The extractor writes `api-spec.captured.md`, with sensitive headers and common token fields redacted. Review it manually before copying confirmed endpoint details here.
+
 ## Capture Target
 
 - OTF app version:

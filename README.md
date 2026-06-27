@@ -52,10 +52,17 @@ Then edit `.env`.
 On Windows:
 
 ```bash
-mitmweb --listen-port 8080
+pip install -r requirements-dev.txt
+python scripts/start_capture.py
 ```
 
-Configure your iPhone WiFi HTTP proxy to your Windows machine IP on port `8080`, install the certificate from `http://mitm.it`, and trust it in iOS settings.
+The script starts `mitmweb`, prints the Windows local IP address, and saves captured flows to:
+
+```text
+./data/otf-capture.mitm
+```
+
+Configure your iPhone WiFi HTTP proxy to the printed Windows IP on port `8080`, install the certificate from `http://mitm.it`, and trust it in iOS settings.
 
 Capture:
 
@@ -65,6 +72,14 @@ Capture:
 - completed workout summary
 
 If iOS certificate pinning blocks capture, try the OTF web portal in browser DevTools or an Android capture path.
+
+After capture, generate a redacted API draft:
+
+```bash
+python scripts/extract_otf_flows.py ./data/otf-capture.mitm
+```
+
+Review `api-spec.captured.md`, then move the confirmed endpoints and payload shapes into `api-spec.md`.
 
 ## Run Once
 
